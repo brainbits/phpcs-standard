@@ -6,6 +6,7 @@
 
 	<rule ref="../vendor/escapestudios/symfony2-coding-standard/Symfony2/ruleset.xml">
 		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+		<exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
 		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
 		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
 		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
@@ -64,8 +65,9 @@
 			<property name="usefulAnnotations" type="array" value="
 				@dataProvider,
 				@Route,
-				@Security
-				@Cache
+				@Security,
+				@Cache,
+				@Serializer\VirtualProperty
 			"/>
 		</properties>
 	</rule>
