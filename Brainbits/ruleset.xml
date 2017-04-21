@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<ruleset name="brainbits">
+    <description>The brainbits coding standard.</description>
+
+    <!-- Include the whole Symfony standard -->
+
+	<rule ref="../vendor/escapestudios/symfony2-coding-standard/Symfony2/ruleset.xml">
+		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingReturn"/>
+		<exclude name="Symfony2.Commenting.FunctionComment.Missing"/>
+		<exclude name="Symfony2.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Symfony2.Commenting.FunctionComment.MissingReturn"/>
+	</rule>
+
+	<rule ref="../vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+		<exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.YodaComparison"/>
+		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineAfterOpeningBrace"/>
+		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeOpeningBrace"/>
+		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeClosingBrace"/>
+		<exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
+		<properties>
+			<property name="forbiddenAnnotations" type="array" value="
+				@author,
+				@created,
+				@copyright,
+				@license,
+				@package,
+				@version
+			" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+		<properties>
+			<property name="searchAnnotations" value="true"/>
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+		<properties>
+			<property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
+			<property name="spacesCountAroundEqualsSign" value="1"/>
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+		<properties>
+			<property name="enableNullableTypeHints" value="true"/>
+			<property name="enableVoidTypeHint" value="true"/>
+			<property name="usefulAnnotations" type="array" value="
+				@dataProvider,
+				@Route,
+				@Security
+				@Cache
+			"/>
+		</properties>
+	</rule>
+</ruleset>
