@@ -1,0 +1,19 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  LATEST_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  CURRENT_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_PIPELINE_ID
+
+before_script:
+  - env
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - docker build -t $LATEST_TAG -t $CURRENT_TAG .
+    - docker push $LATEST_TAG
+    - docker push $CURRENT_TAG
