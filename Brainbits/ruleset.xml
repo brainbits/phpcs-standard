@@ -63,6 +63,7 @@
 			<property name="enableNullableTypeHints" value="true"/>
 			<property name="enableVoidTypeHint" value="true"/>
 			<property name="usefulAnnotations" type="array" value="
+                                @see,
 				@dataProvider,
 				@Route,
 				@Security,
