@@ -4,7 +4,7 @@
 
     <!-- Include the whole Symfony standard -->
 
-	<rule ref="../vendor/escapestudios/symfony2-coding-standard/Symfony/ruleset.xml">
+	<rule ref="Symfony">
 		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
 		<exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
 		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
@@ -17,22 +17,39 @@
 		<exclude name="Symfony.Commenting.FunctionComment.MissingReturn"/>
 		<exclude name="Symfony.Commenting.FunctionComment.ParamNameNoMatch"/>
 		<exclude name="Symfony.Commenting.License.Warning"/>
+		<exclude name="Symfony.ControlStructure.YodaConditions.Invalid"/>
+		<exclude name="Symfony.Functions.Arguments.Invalid"/>
+		<exclude name="Symfony.Whitespace.DiscourageFitzinator.Invalid"/>
 	</rule>
 
-	<rule ref="../vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+	<!-- Include the whole SlevomatCodingStandard standard -->
+
+	<rule ref="SlevomatCodingStandard">
 		<exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
-		<exclude name="SlevomatCodingStandard.ControlStructures.YodaComparison"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
 		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
-		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
 		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineAfterOpeningBrace"/>
 		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeOpeningBrace"/>
 		<exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeClosingBrace"/>
+		<exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
+	</rule>
+
+	<!-- Configure specific sniffs from the SlevomatCodingStandard standard -->
+
+	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+		<properties>
+			<property name="allowPartialUses" value="true"/>
+			<property name="allowFullyQualifiedGlobalFunctions" value="true"/>
+			<property name="allowFullyQualifiedGlobalConstants" value="true"/>
+			<property name="allowFullyQualifiedNameForCollidingClasses" value="true"/>
+		</properties>
 	</rule>
 
 	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
@@ -72,7 +89,9 @@
 				@Route,
 				@Security,
 				@Cache,
-				@Serializer\VirtualProperty
+				@Serializer\VirtualProperty,
+				@ApiDoc,
+				@ApiDoc(
 			"/>
 		</properties>
 	</rule>

@@ -7,7 +7,7 @@ namespace Brainbits;
 /**
  * Class Test2
  */
-class Test2
+class test2
 {
     /**
      * @param string[] $list
