@@ -1,19 +1,24 @@
 How to Use
 ==========
 
-Standalone
-----------
+Global
+------
 
 1. Clone repository
 2. composer install
 3. Configure standard:
-   vendor/bin/phpcs --config-set installed_paths $PWD 
+   <install-dir>/vendor/bin/phpcs --standard BrainbitsCodingStandard <src-dir> 
 
 In Project
 ----------
 
 1. composer require brainbits/php-code-style
-2. vendor/bin/phpcs --config-set installed_paths $PWD
+2. vendor/bin/phpcs --standard BrainbitsCodingStandard <src-dir>
+
+Docker
+------
+
+1. docker run -it --rm -v $PWD:/app service-phpcs <src-dir>
 
 Used Code Styles
 ================

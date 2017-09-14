@@ -13,4 +13,4 @@ RUN \
 
 WORKDIR /app
 
-ENTRYPOINT ["/phpcs/vendor/bin/phpcs", "--standard=/phpcs/Brainbits"]
+ENTRYPOINT ["/phpcs/vendor/bin/phpcs", "--standard=BrainbitsCodingStandard", "--ignore=\"(vendor|tests)\"", "-p"]
