@@ -14,7 +14,7 @@
     },
     "require": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.4.2",
-        "slevomat/coding-standard": "dev-master",
+        "slevomat/coding-standard": "^4.0",
         "escapestudios/symfony2-coding-standard": "^3.0"
     },
     "require-dev": {

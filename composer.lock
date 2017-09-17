@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "09a5bbd071705c0d939f0ea7d62faa30",
+    "content-hash": "122c5f180dc1e475782f8c8928aa41ff",
     "packages": [
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -121,16 +121,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "dev-master",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "32e1c43eb03dc351d7325ef35c3f8c8026caeb76"
+                "reference": "bab653d0f7f2e3ed13796f7803067d252f00a25a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/32e1c43eb03dc351d7325ef35c3f8c8026caeb76",
-                "reference": "32e1c43eb03dc351d7325ef35c3f8c8026caeb76",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/bab653d0f7f2e3ed13796f7803067d252f00a25a",
+                "reference": "bab653d0f7f2e3ed13796f7803067d252f00a25a",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "MIT"
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2017-09-14T09:30:40+00:00"
+            "time": "2017-09-15T17:47:36+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1525,9 +1525,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "slevomat/coding-standard": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
