@@ -6,9 +6,7 @@ ADD . /phpcs
 
 WORKDIR /phpcs
 
-RUN \
-    # Configure php memory
-    echo "memory_limit=-1" > /etc/php7/conf.d/30-memory.ini \
+RUN echo "memory_limit=-1" > /etc/php7/conf.d/30-memory.ini \
     && composer install --no-dev
 
 WORKDIR /app
