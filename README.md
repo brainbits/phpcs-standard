@@ -17,7 +17,7 @@ In Project
 1. composer require brainbits/php-code-style
 2. vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
 
-In Project with custom ruleset
+In Project with Custom Ruleset
 ------------------------------
 
 1. composer require brainbits/php-code-style
@@ -27,7 +27,7 @@ In Project with custom ruleset
 Docker
 ------
 
-1. docker run -it --rm -v $PWD:/app service-phpcs <src-dir>
+1. docker run -it --rm -v $PWD:/app gitlab.brainbits.net:4567/brainbits/php-code-style:master &lt;src-dir&gt;
 
 Used Code Styles
 ================
