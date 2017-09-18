@@ -6,14 +6,23 @@ Global
 
 1. Clone repository
 2. composer install
-3. Configure standard:
-   <install-dir>/vendor/bin/phpcs --standard BrainbitsCodingStandard <src-dir> 
+3. Configure standard: 
+   &lt;install-dir&gt;/vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
+4. Ausführen:
+   &lt;install-dir&gt;/vendor/bin/phpcs &lt;src-dir&gt;
 
 In Project
 ----------
 
 1. composer require brainbits/php-code-style
-2. vendor/bin/phpcs --standard BrainbitsCodingStandard <src-dir>
+2. vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
+
+In Project with custom ruleset
+------------------------------
+
+1. composer require brainbits/php-code-style
+2. Create phpcs.xml (https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage)
+3. vendor/bin/phpcs
 
 Docker
 ------
