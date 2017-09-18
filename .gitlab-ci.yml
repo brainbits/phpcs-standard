@@ -14,4 +14,5 @@ build:
   stage: build
   script:
     - docker build -t $LATEST_TAG .
+    - docker run --rm --entrypoint bash $LATEST_TAG -c "apk --no-cache add php7-xdebug && echo zend_extension=xdebug.so > /etc/php7/conf.d/xdebug.ini && cd /phpcs && composer install --no-ansi --no-interaction && vendor/bin/phpunit --colors=never -coverage-text --coverage-html=build/coverage"
     - docker push $LATEST_TAG
