@@ -1,7 +1,7 @@
 {
     "name": "brainbits/phpcs-standard",
     "description": "Brainbits Coding Style",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "phpcodesniffer-standard",
     "autoload": {
         "psr-4": {
