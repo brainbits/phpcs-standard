@@ -1,5 +1,5 @@
 {
-    "name": "brainbits/code-style",
+    "name": "brainbits/phpcs-standard",
     "description": "Brainbits Coding Style",
     "license": "proprietary",
     "autoload": {

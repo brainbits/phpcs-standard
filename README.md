@@ -27,7 +27,7 @@ In Project with Custom Ruleset
 Docker
 ------
 
-1. docker run -it --rm -v $PWD:/app brainbits/phpcs &lt;src-dir&gt;
+1. docker run -it --rm -v $PWD:/app brainbits/phpcs-standard &lt;src-dir&gt;
 
 Used Code Styles
 ================
