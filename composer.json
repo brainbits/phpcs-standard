@@ -2,6 +2,7 @@
     "name": "brainbits/phpcs-standard",
     "description": "Brainbits Coding Style",
     "license": "proprietary",
+    "type": "phpcodesniffer-standard",
     "autoload": {
         "psr-4": {
             "BrainbitsCodingStandard\\": "BrainbitsCodingStandard"
