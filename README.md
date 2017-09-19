@@ -22,7 +22,10 @@ Global
 In Project
 ----------
 
-1. composer require brainbits/php-code-style
+1. Add the standard to your project:
+   ```bash
+   composer require brainbits/phpcs-standard
+   ```
 2. Configure standard:
    ```bash
    vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
@@ -32,12 +35,12 @@ In Project
    vendor/bin/phpcs {src-dir}
    ```
 
-In Project with Custom Ruleset
-------------------------------
+In Project with Ruleset Customization
+-------------------------------------
 
 1. Add the standard to your project:
    ```bash
-   composer require brainbits/php-code-style
+   composer require brainbits/phpcs-standard
    ```
 2. Create phpcs.xml (See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage)
    1. Include brainbits ruleset: 
@@ -57,7 +60,7 @@ In Project with Custom Ruleset
 Docker
 ------
 
-1. docker run -it --rm -v $PWD:/app brainbits/phpcs-standard &lt;src-dir&gt;
+1. docker run -it --rm -v $PWD:/app brainbits/phpcs-standard {src-dir}
 
 Used Code Styles
 ================
