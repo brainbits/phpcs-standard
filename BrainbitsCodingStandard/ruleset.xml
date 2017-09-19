@@ -41,6 +41,8 @@
 		<exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
 	</rule>
 
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"></rule>
+
 	<!-- Configure specific sniffs from the SlevomatCodingStandard standard -->
 
 	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
