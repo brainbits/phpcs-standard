@@ -88,6 +88,7 @@
 			<property name="usefulAnnotations" type="array" value="
 				@deprecated,
 				@see,
+				@depends,
 				@dataProvider,
 				@Route,
 				@Security,
