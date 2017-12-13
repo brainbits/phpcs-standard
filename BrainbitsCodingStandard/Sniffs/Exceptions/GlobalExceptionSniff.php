@@ -62,7 +62,13 @@ class GlobalExceptionSniff implements Sniff
             }
 
             $classStartPoint = TokenHelper::findNext($phpcsFile, [T_NS_SEPARATOR, T_STRING], $currentPointer + 1);
+            if (!$classStartPoint) {
+                continue;
+            }
             $classEndPointer = TokenHelper::findNextExcluding($phpcsFile, [T_NS_SEPARATOR, T_STRING], $classStartPoint + 1) - 1;
+            if (!$classEndPointer) {
+                continue;
+            }
             $class = TokenHelper::getContent($phpcsFile, $classStartPoint, $classEndPointer);
 
             if (substr($class, 0, 1) === '\\') {
