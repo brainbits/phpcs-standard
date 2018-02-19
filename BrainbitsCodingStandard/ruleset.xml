@@ -94,9 +94,10 @@
 				@Route,
 				@Security,
 				@Cache,
-				@Serializer\VirtualProperty,
 				@ApiDoc,
-				@ApiDoc(
+				@ApiDoc(,
+				@Serializer\,
+				@Rest\
 			"/>
 		</properties>
 	</rule>
