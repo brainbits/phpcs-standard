@@ -26,6 +26,8 @@
     <!-- Include the whole SlevomatCodingStandard standard -->
 
     <rule ref="SlevomatCodingStandard">
+        <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
@@ -40,7 +42,6 @@
         <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeOpeningBrace"/>
         <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeClosingBrace"/>
         <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
-        <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing"/>
     </rule>
 
     <!-- Forbid `array(...)` -->
