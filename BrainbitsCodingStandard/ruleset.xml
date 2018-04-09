@@ -3,7 +3,6 @@
     <description>The brainbits coding standard.</description>
 
     <!-- Include the whole Symfony standard -->
-
     <rule ref="Symfony">
         <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
         <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
@@ -24,8 +23,8 @@
     </rule>
 
     <!-- Include the whole SlevomatCodingStandard standard -->
-
     <rule ref="SlevomatCodingStandard">
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
         <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing"/>
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
