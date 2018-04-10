@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+* Exclude sniff `SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix`
+
 ## 1.0.2
 
 * Exclude sniff `SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix`

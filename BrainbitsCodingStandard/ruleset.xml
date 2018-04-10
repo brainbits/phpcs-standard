@@ -25,6 +25,7 @@
     <!-- Include the whole SlevomatCodingStandard standard -->
     <rule ref="SlevomatCodingStandard">
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
         <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing"/>
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
