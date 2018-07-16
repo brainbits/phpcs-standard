@@ -125,6 +125,7 @@
             <property name="enableVoidTypeHint" value="true"/>
             <property name="enableEachParameterAndReturnInspection" value="true"/>
             <property name="usefulAnnotations" type="array" value="
+                @throws,
                 @deprecated,
                 @see,
                 @depends,
