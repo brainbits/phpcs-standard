@@ -14,7 +14,6 @@
         <type>error</type>
     </rule>
 
-
     <!-- Force array element indentation with 4 spaces -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
     <!-- Forbid `array(...)` -->
@@ -102,7 +101,6 @@
     <rule ref="Symfony.Errors.UserDeprecated"/>
     <!-- require blank line before return -->
     <rule ref="Symfony.Formatting.BlankLineBeforeReturn"/>
-
 
     <!-- Forbid spaces around square brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
@@ -214,8 +212,6 @@
         <severity>5</severity>
     </rule>
 
-
-
     <!-- Require comma after last element in multi-line array -->
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
     <!-- Require presence of constant visibility -->
@@ -237,8 +233,6 @@
     </rule>
     <!-- Forbid suffix "Abstract" for abstract classes -->
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
-    <!-- Forbid suffix "Exception" for exception classes -->
-    <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
     <!-- Forbid suffix "Interface" for interfaces -->
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
     <!-- Forbid multiple traits separated by comma -->
@@ -379,7 +373,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
             <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
-            <property name="spacesCountAroundEqualsSign" value="1"/>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
         </properties>
     </rule>
     <!-- Require use of short versions of scalar types (i.e. int instead of integer) -->
@@ -399,7 +393,7 @@
     <!-- Require types to be written as natively if possible;
          require iterable types to specify phpDoc with their content;
          forbid useless/duplicated information in phpDoc -->
-    <!--rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
         <properties>
             <property name="enableNullableTypeHints" value="true"/>
             <property name="enableVoidTypeHint" value="true"/>
@@ -419,7 +413,8 @@
                 @Rest\
             "/>
         </properties>
-    </rule-->
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
+    </rule>
     <!-- Forbid empty lines around type declarations -->
     <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces">
         <properties>
