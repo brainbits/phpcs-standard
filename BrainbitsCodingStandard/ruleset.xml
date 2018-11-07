@@ -261,6 +261,7 @@
                 @category,
                 @copyright,
                 @created,
+                @expectedDeprecation,
                 @license,
                 @package,
                 @since,
