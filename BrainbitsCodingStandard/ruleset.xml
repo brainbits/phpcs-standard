@@ -403,6 +403,7 @@
                 @depends,
                 @deprecated,
                 @expectedDeprecation,
+                @group,
                 @see,
                 @throws,
                 @ApiDoc,
