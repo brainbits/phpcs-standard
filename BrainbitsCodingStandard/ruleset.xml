@@ -402,6 +402,7 @@
                 @dataProvider,
                 @depends,
                 @deprecated,
+                @doesNotPerformAssertions,
                 @expectedDeprecation,
                 @group,
                 @see,
