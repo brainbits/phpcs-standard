@@ -53,7 +53,7 @@ class GlobalExceptionSniff implements Sniff
             'UnexpectedValueException',
         ];
 
-        $useStatements = UseStatementHelper::getUseStatements($phpcsFile, $currentPointer);
+        $useStatements = UseStatementHelper::getFileUseStatements($phpcsFile);
 
         do {
             $currentPointer = TokenHelper::findNext($phpcsFile, T_THROW, $currentPointer + 1);
@@ -83,7 +83,8 @@ class GlobalExceptionSniff implements Sniff
                 }
             } else {
                 // referenced
-                foreach ($useStatements as $useStatement) {
+                foreach ($useStatements as $useStatementX) {
+                foreach ($useStatementX as $useStatement) {
                     if ($useStatement->getNameAsReferencedInFile() === $class || $useStatement->getFullyQualifiedTypeName() === $class) {
                         if (in_array($useStatement->getFullyQualifiedTypeName(), $globalExceptions)) {
                             $phpcsFile->addError(
@@ -93,6 +94,7 @@ class GlobalExceptionSniff implements Sniff
                             );
                         }
                     }
+                }
                 }
             }
 
