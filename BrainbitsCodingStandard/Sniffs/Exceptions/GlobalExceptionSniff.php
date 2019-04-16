@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace BrainbitsCodingStandard\Sniffs\Exceptions;
 
@@ -8,6 +8,13 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 use SlevomatCodingStandard\Helpers\UseStatementHelper;
+use function in_array;
+use function sprintf;
+use function substr;
+use const T_NS_SEPARATOR;
+use const T_OPEN_TAG;
+use const T_STRING;
+use const T_THROW;
 
 /**
  * Global exception sniff
@@ -65,7 +72,11 @@ class GlobalExceptionSniff implements Sniff
             if (!$classStartPoint) {
                 continue;
             }
-            $classEndPointer = TokenHelper::findNextExcluding($phpcsFile, [T_NS_SEPARATOR, T_STRING], $classStartPoint + 1) - 1;
+            $classEndPointer = TokenHelper::findNextExcluding(
+                $phpcsFile,
+                [T_NS_SEPARATOR, T_STRING],
+                $classStartPoint + 1
+            ) - 1;
             if (!$classEndPointer) {
                 continue;
             }
@@ -84,17 +95,18 @@ class GlobalExceptionSniff implements Sniff
             } else {
                 // referenced
                 foreach ($useStatements as $useStatementX) {
-                foreach ($useStatementX as $useStatement) {
-                    if ($useStatement->getNameAsReferencedInFile() === $class || $useStatement->getFullyQualifiedTypeName() === $class) {
-                        if (in_array($useStatement->getFullyQualifiedTypeName(), $globalExceptions)) {
-                            $phpcsFile->addError(
-                                sprintf('Global exception "%s" used. It should be locally extended.', $class),
-                                $classStartPoint,
-                                self::CODE_GLOBAL_EXCEPTION
-                            );
+                    foreach ($useStatementX as $useStatement) {
+                        // phpcs:ignore
+                        if ($useStatement->getNameAsReferencedInFile() === $class || $useStatement->getFullyQualifiedTypeName() === $class) {
+                            if (in_array($useStatement->getFullyQualifiedTypeName(), $globalExceptions)) {
+                                $phpcsFile->addError(
+                                    sprintf('Global exception "%s" used. It should be locally extended.', $class),
+                                    $classStartPoint,
+                                    self::CODE_GLOBAL_EXCEPTION
+                                );
+                            }
                         }
                     }
-                }
                 }
             }
 

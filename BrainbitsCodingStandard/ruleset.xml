@@ -398,23 +398,7 @@
             <property name="enableNullableTypeHints" value="true"/>
             <property name="enableVoidTypeHint" value="true"/>
             <property name="enableEachParameterAndReturnInspection" value="true"/>
-            <property name="usefulAnnotations" type="array" value="
-                @dataProvider,
-                @depends,
-                @deprecated,
-                @doesNotPerformAssertions,
-                @expectedDeprecation,
-                @group,
-                @see,
-                @throws,
-                @ApiDoc,
-                @ApiDoc(,
-                @Cache,
-                @Rest\,
-                @Route,
-                @Security,
-                @Serializer\
-            "/>
+            <property name="allAnnotationsAreUseful" value="true"/>
         </properties>
         <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint"/>
     </rule>
