@@ -310,6 +310,8 @@
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
     <!-- Require static closure -->
     <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
+    <!-- Force commas after the last parameter in function or method call -->
+    <rule ref="SlevomatCodingStandard.Functions.TrailingCommaInCall"/>
     <!-- Forbid unused inherited variables passed to closure -->
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
     <!-- Forbid unused function parameters -->
