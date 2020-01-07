@@ -75,7 +75,7 @@ class GlobalExceptionSniff implements Sniff
             $classEndPointer = TokenHelper::findNextExcluding(
                 $phpcsFile,
                 [T_NS_SEPARATOR, T_STRING],
-                $classStartPoint + 1,
+                $classStartPoint + 1
             ) - 1;
             if (!$classEndPointer) {
                 continue;
@@ -89,7 +89,7 @@ class GlobalExceptionSniff implements Sniff
                     $phpcsFile->addError(
                         sprintf('Global exception "%s" used. It should be locally extended.', $class),
                         $currentPointer,
-                        self::CODE_GLOBAL_EXCEPTION,
+                        self::CODE_GLOBAL_EXCEPTION
                     );
                 }
             } else {
@@ -102,7 +102,7 @@ class GlobalExceptionSniff implements Sniff
                                 $phpcsFile->addError(
                                     sprintf('Global exception "%s" used. It should be locally extended.', $class),
                                     $classStartPoint,
-                                    self::CODE_GLOBAL_EXCEPTION,
+                                    self::CODE_GLOBAL_EXCEPTION
                                 );
                             }
                         }
