@@ -1,5 +1,0 @@
-.git
-.gitignore
-build
-docker-compose.yml
-vendor
