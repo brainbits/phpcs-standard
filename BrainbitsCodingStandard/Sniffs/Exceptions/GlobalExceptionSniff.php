@@ -62,25 +62,34 @@ class GlobalExceptionSniff implements Sniff
 
         $useStatements = UseStatementHelper::getFileUseStatements($phpcsFile);
 
+        if (defined('T_NAME_FULLY_QUALIFIED')) {
+            // php 8.x
+            $classTokens = [T_NAME_FULLY_QUALIFIED, T_NS_SEPARATOR, T_STRING];
+        } else {
+            $classTokens = [T_NS_SEPARATOR, T_STRING];
+        }
+
         do {
             $currentPointer = TokenHelper::findNext($phpcsFile, T_THROW, $currentPointer + 1);
             if (!$currentPointer) {
                 break;
             }
 
-            $classStartPoint = TokenHelper::findNext($phpcsFile, [T_NS_SEPARATOR, T_STRING], $currentPointer + 1);
-            if (!$classStartPoint) {
+            $classStartPointer = TokenHelper::findNext($phpcsFile, $classTokens, $currentPointer + 1);
+            if (!$classStartPointer) {
                 continue;
             }
+
             $classEndPointer = TokenHelper::findNextExcluding(
                 $phpcsFile,
-                [T_NS_SEPARATOR, T_STRING],
-                $classStartPoint + 1
+                $classTokens,
+                $classStartPointer + 1
             ) - 1;
             if (!$classEndPointer) {
                 continue;
             }
-            $class = TokenHelper::getContent($phpcsFile, $classStartPoint, $classEndPointer);
+
+            $class = TokenHelper::getContent($phpcsFile, $classStartPointer, $classEndPointer);
 
             if (substr($class, 0, 1) === '\\') {
                 // fully qualfied
@@ -101,7 +110,7 @@ class GlobalExceptionSniff implements Sniff
                             if (in_array($useStatement->getFullyQualifiedTypeName(), $globalExceptions)) {
                                 $phpcsFile->addError(
                                     sprintf('Global exception "%s" used. It should be locally extended.', $class),
-                                    $classStartPoint,
+                                    $classStartPointer,
                                     self::CODE_GLOBAL_EXCEPTION
                                 );
                             }
