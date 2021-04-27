@@ -4,7 +4,8 @@
 
 	<file>Brainbits</file>
 
-	<!--arg name="report" value="summary"/-->
+	<arg name="basepath" value="."/>
+	<arg name="extensions" value="php"/>
 	<arg name="colors"/>
 	<arg value="sp"/>
 

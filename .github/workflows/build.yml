@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - "master"
+      - "fix/actions"
 
 jobs:
   tests:
@@ -21,7 +22,7 @@ jobs:
           - "7.3"
           - "7.4"
           - "8.0"
-        operating-system: ["ubuntu-latest", "windows-latest"]
+        operating-system: ["ubuntu-latest"]
 
     steps:
       - name: "Checkout"
@@ -53,10 +54,10 @@ jobs:
         run: "vendor/bin/phpunit"
 
       - name: "Test Brainbits"
-        run: "vendor/bin/phpcs --standard=Brainbits `find tests/Brainbits/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/Brainbits/expected_report.txt phpcs.log"
-
-      - name: "Test BrainbitsCodingStandardTest"
-        run: "vendor/bin/phpcs --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"
+        run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=Brainbits `find tests/Brainbits/input/* | sort`) || true; diff -u tests/Brainbits/expected_report.txt phpcs.log"
 
       - name: "Test BrainbitsCodingStandard"
-        run: "vendor/bin/phpcs --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"
+        run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort`) || true; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"
+
+      - name: "Test BrainbitsCodingStandardTest"
+        run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort`) || true; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"

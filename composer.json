@@ -29,9 +29,9 @@
     "scripts": {
         "tests": [
             "vendor/bin/phpunit",
-            "vendor/bin/phpcs --standard=Brainbits `find tests/Brainbits/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/Brainbits/expected_report.txt phpcs.log",
-            "vendor/bin/phpcs --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log",
-            "vendor/bin/phpcs --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"
+            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=Brainbits `find tests/Brainbits/input/* | sort`; diff -u tests/Brainbits/expected_report.txt phpcs.log",
+            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort`; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log",
+            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort`; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"
         ]
     },
     "extra": {
