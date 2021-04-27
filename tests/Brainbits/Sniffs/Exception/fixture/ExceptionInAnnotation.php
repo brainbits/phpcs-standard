@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Test;
 
-class exceptionInAnnotation
+class ExceptionInAnnotation
 {
     /**
      * @expectedException \Exception

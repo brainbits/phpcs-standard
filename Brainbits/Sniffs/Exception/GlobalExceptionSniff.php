@@ -2,19 +2,25 @@
 
 declare(strict_types=1);
 
-namespace BrainbitsCodingStandard\Sniffs\Exceptions;
+namespace Brainbits\Sniffs\Exception;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 use SlevomatCodingStandard\Helpers\UseStatementHelper;
+
+use function defined;
 use function in_array;
 use function sprintf;
 use function substr;
+
 use const T_NS_SEPARATOR;
 use const T_OPEN_TAG;
 use const T_STRING;
 use const T_THROW;
+
+// phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+// phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
 
 /**
  * Global exception sniff
@@ -28,14 +34,10 @@ class GlobalExceptionSniff implements Sniff
      */
     public function register(): array
     {
-        return [
-            T_OPEN_TAG,
-        ];
+        return [T_OPEN_TAG];
     }
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-     *
      * @param int $openTagPointer
      */
     public function process(File $phpcsFile, $openTagPointer): void
@@ -64,6 +66,7 @@ class GlobalExceptionSniff implements Sniff
 
         if (defined('T_NAME_FULLY_QUALIFIED')) {
             // php 8.x
+            // phpcs:ignore SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFallbackGlobalName
             $classTokens = [T_NAME_FULLY_QUALIFIED, T_NS_SEPARATOR, T_STRING];
         } else {
             $classTokens = [T_NS_SEPARATOR, T_STRING];

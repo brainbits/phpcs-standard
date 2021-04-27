@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Test;
 
@@ -8,7 +8,7 @@ use Exception;
 use LogicException;
 use RuntimeException;
 
-class exceptionInUseWithoutAlias
+class ExceptionInUseWithoutAlias
 {
     public function logicException(): void
     {

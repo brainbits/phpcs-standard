@@ -2,10 +2,5 @@
 <ruleset name="brainbitsTest">
     <description>The brainbits coding standard.</description>
 
-    <rule ref="Doctrine">
-        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
-        <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect" />
-        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing.IncorrectWhitespaceBeforeColon" />
-        <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
-    </rule>
+    <rule ref="Brainbits"/>
 </ruleset>

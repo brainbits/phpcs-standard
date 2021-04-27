@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test;
 
 use Foo\LogicException;
 use Bar\BazException;
 
-class allowedExceptions
+class AllowedExceptions
 {
     public function a()
     {

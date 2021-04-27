@@ -52,3 +52,11 @@ jobs:
       - name: "Tests"
         run: "vendor/bin/phpunit"
 
+      - name: "Test Brainbits"
+        run: "vendor/bin/phpcs --standard=Brainbits `find tests/Brainbits/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/Brainbits/expected_report.txt phpcs.log"
+
+      - name: "Test BrainbitsCodingStandardTest"
+        run: "vendor/bin/phpcs --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"
+
+      - name: "Test BrainbitsCodingStandard"
+        run: "vendor/bin/phpcs --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort` --report=summary --report-file=phpcs.log; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"

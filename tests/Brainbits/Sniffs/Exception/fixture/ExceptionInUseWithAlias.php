@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Test;
 
 use Exception as Foo;
 use RuntimeException as Bar;
 
-class exceptionInUseWithAlias
+class ExceptionInUseWithAlias
 {
     public function foo(): void
     {

@@ -1,42 +1,44 @@
-<?php declare(strict_types = 1);
+<?php
 
-namespace BrainbitsCodingStandard\Sniffs\Exceptions;
+declare(strict_types = 1);
 
-use BrainbitsCodingStandard\Sniffs\TestCase;
+namespace Brainbits\Sniffs\Exception;
+
+use SlevomatCodingStandard\Sniffs\TestCase;
 
 class GlobalExceptionSniffTest extends TestCase
 {
     public function testNoNamespace()
     {
-        $report = $this->checkFile(__DIR__.'/data/noNamespace.php');
+        $report = $this->checkFile(__DIR__.'/fixture/NoNamespace.php');
 
         $this->assertNoSniffErrorInFile($report);
     }
 
     public function testNoException()
     {
-        $report = $this->checkFile(__DIR__.'/data/noException.php');
+        $report = $this->checkFile(__DIR__.'/fixture/NoException.php');
 
         $this->assertNoSniffErrorInFile($report);
     }
 
     public function testExceptionInAnnotation()
     {
-        $report = $this->checkFile(__DIR__.'/data/exceptionInAnnotation.php');
+        $report = $this->checkFile(__DIR__.'/fixture/ExceptionInAnnotation.php');
 
         $this->assertNoSniffErrorInFile($report);
     }
 
     public function testAllowedExceptions()
     {
-        $report = $this->checkFile(__DIR__.'/data/allowedExceptions.php');
+        $report = $this->checkFile(__DIR__.'/fixture/AllowedExceptions.php');
 
         $this->assertNoSniffErrorInFile($report);
     }
 
     public function testExceptionInUseWithoutAlias()
     {
-        $report = $this->checkFile(__DIR__.'/data/exceptionInUseWithoutAlias.php');
+        $report = $this->checkFile(__DIR__.'/fixture/ExceptionInUseWithoutAlias.php');
 
         $this->assertSame(3, $report->getErrorCount());
         $this->assertSniffError($report, 15, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION);
@@ -46,7 +48,7 @@ class GlobalExceptionSniffTest extends TestCase
 
     public function testExceptionInUseWithAlias()
     {
-        $report = $this->checkFile(__DIR__.'/data/exceptionInUseWithAlias.php');
+        $report = $this->checkFile(__DIR__.'/fixture/ExceptionInUseWithAlias.php');
 
         $this->assertSame(2, $report->getErrorCount());
         $this->assertSniffError($report, 14, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION);
@@ -55,7 +57,7 @@ class GlobalExceptionSniffTest extends TestCase
 
     public function testFullQualifiedException()
     {
-        $report = $this->checkFile(__DIR__.'/data/fullQualifiedException.php');
+        $report = $this->checkFile(__DIR__.'/fixture/FullQualifiedException.php');
 
         $this->assertSame(3, $report->getErrorCount());
         $this->assertSniffError($report, 11, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION);

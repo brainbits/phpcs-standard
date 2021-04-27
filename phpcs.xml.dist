@@ -2,11 +2,11 @@
 <ruleset name="controlling">
     <description>The brainbits coding standard.</description>
 
-	<file>BrainbitsCodingStandard</file>
+	<file>Brainbits</file>
 
 	<!--arg name="report" value="summary"/-->
 	<arg name="colors"/>
 	<arg value="sp"/>
 
-	<rule ref="BrainbitsCodingStandard" />
+	<rule ref="Brainbits" />
 </ruleset>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Brainbits">
+    <description>The brainbits coding standard.</description>
+
+    <rule ref="Doctrine">
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
+        <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect" />
+    </rule>
+</ruleset>
