@@ -64,6 +64,5 @@ Docker
 
 Used Code Styles
 ================
-- Symfony2 https://github.com/djoos/Symfony2-coding-standard
 - Slevomat https://github.com/slevomat/coding-standard
-
+- Doctrine https://github.com/doctrine/coding-standard
