@@ -29,17 +29,13 @@ class GlobalExceptionSniff implements Sniff
 {
     public const CODE_GLOBAL_EXCEPTION = 'GlobalException';
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function register(): array
     {
         return [T_OPEN_TAG];
     }
 
-    /**
-     * @param int $openTagPointer
-     */
+    /** @param int $openTagPointer */
     public function process(File $phpcsFile, $openTagPointer): void
     {
         $currentPointer = $openTagPointer;
@@ -86,7 +82,7 @@ class GlobalExceptionSniff implements Sniff
             $classEndPointer = TokenHelper::findNextExcluding(
                 $phpcsFile,
                 $classTokens,
-                $classStartPointer + 1
+                $classStartPointer + 1,
             ) - 1;
             if (!$classEndPointer) {
                 continue;
@@ -101,7 +97,7 @@ class GlobalExceptionSniff implements Sniff
                     $phpcsFile->addError(
                         sprintf('Global exception "%s" used. It should be locally extended.', $class),
                         $currentPointer,
-                        self::CODE_GLOBAL_EXCEPTION
+                        self::CODE_GLOBAL_EXCEPTION,
                     );
                 }
             } else {
@@ -114,7 +110,7 @@ class GlobalExceptionSniff implements Sniff
                                 $phpcsFile->addError(
                                     sprintf('Global exception "%s" used. It should be locally extended.', $class),
                                     $classStartPointer,
-                                    self::CODE_GLOBAL_EXCEPTION
+                                    self::CODE_GLOBAL_EXCEPTION,
                                 );
                             }
                         }
