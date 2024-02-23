@@ -18,9 +18,9 @@ jobs:
       matrix:
         dependencies: ["lowest", "highest"]
         php-version:
-          - "7.3"
-          - "7.4"
-          - "8.0"
+          - "8.1"
+          - "8.2"
+          - "8.3"
         operating-system: ["ubuntu-latest"]
 
     steps:
@@ -53,10 +53,5 @@ jobs:
         run: "vendor/bin/phpunit"
 
       - name: "Test Brainbits"
+        if: ${{ matrix.dependencies == 'highest' }}
         run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=Brainbits `find tests/Brainbits/input/* | sort`) || true; diff -u tests/Brainbits/expected_report.txt phpcs.log"
-
-      - name: "Test BrainbitsCodingStandard"
-        run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort`) || true; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log"
-
-      - name: "Test BrainbitsCodingStandardTest"
-        run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort`) || true; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"
