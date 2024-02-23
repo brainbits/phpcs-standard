@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<ruleset name="brainbitsTest">
-    <description>The brainbits coding standard.</description>
-
-    <rule ref="Brainbits"/>
-</ruleset>
