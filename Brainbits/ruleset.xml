@@ -5,5 +5,7 @@
     <rule ref="Doctrine">
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
         <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect" />
+        <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
     </rule>
+    <rul ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />
 </ruleset>
