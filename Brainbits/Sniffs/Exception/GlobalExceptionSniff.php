@@ -27,6 +27,7 @@ use const T_THROW;
  */
 class GlobalExceptionSniff implements Sniff
 {
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.ClassConstantTypeHint.MissingNativeTypeHint
     public const CODE_GLOBAL_EXCEPTION = 'GlobalException';
 
     /** @return mixed[] */
