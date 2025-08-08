@@ -34,11 +34,6 @@
             "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort`; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"
         ]
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        }
-    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
