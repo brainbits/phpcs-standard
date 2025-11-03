@@ -6,6 +6,7 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
         <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect" />
         <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed" />
     </rule>
     <rul ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />
 </ruleset>
