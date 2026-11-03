@@ -37,7 +37,6 @@ Verzeichnis `Brainbits/` als Standard registriert.
   (z. B. `ChangedFromDoctrineCodingStandard.php`, das die ausgeschlossenen Regeln belegt).
 - `phpcs.xml.dist` — prüft den Code dieses Repos (`Brainbits/`, `tests/` ohne `input/` und
   `fixture/`) mit dem eigenen Standard; läuft auch in CI.
-- `example/`, `docs/` — lose Beispieldateien, nicht Teil von Tests oder CI.
 
 ## Befehle
 
