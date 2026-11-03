@@ -88,4 +88,46 @@ final class GlobalExceptionSniffTest extends TestCase
         self::assertSniffError($report, 35, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'runtimeexception');
         self::assertSniffError($report, 40, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
     }
+
+    public function testMultipleNamespacesBracketed(): void
+    {
+        $report = self::checkFile(__DIR__ . '/fixture/MultipleNamespacesBracketed.php');
+
+        self::assertSame(3, $report->getErrorCount());
+        self::assertSniffError($report, 8, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, '"Exception"');
+        self::assertSniffError($report, 16, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
+        self::assertSniffError($report, 17, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'RuntimeException');
+    }
+
+    public function testMultipleNamespacesUnbracketed(): void
+    {
+        $report = self::checkFile(__DIR__ . '/fixture/MultipleNamespacesUnbracketed.php');
+
+        self::assertSame(2, $report->getErrorCount());
+        self::assertSniffError($report, 9, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, '"Exception"');
+        self::assertSniffError($report, 16, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'RuntimeException');
+    }
+
+    public function testGroupUseAndFunctionOrConstImports(): void
+    {
+        $report = self::checkFile(__DIR__ . '/fixture/GroupUse.php');
+
+        self::assertSame(2, $report->getErrorCount());
+        self::assertSniffError($report, 12, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
+        self::assertSniffError($report, 13, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'DomainException');
+    }
+
+    public function testThrowExpressions(): void
+    {
+        $report = self::checkFile(__DIR__ . '/fixture/ThrowExpressions.php');
+
+        self::assertSame(7, $report->getErrorCount());
+        self::assertSniffError($report, 13, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
+        self::assertSniffError($report, 14, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'RuntimeException');
+        self::assertSniffError($report, 15, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'UnexpectedValueException');
+        self::assertSniffError($report, 18, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'DomainException');
+        self::assertSniffError($report, 20, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, '"Exception"');
+        self::assertSniffError($report, 21, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, '"Exception"');
+        self::assertSniffError($report, 22, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, '"Exception"');
+    }
 }
