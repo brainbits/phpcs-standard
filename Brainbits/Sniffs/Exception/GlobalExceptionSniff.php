@@ -6,120 +6,98 @@ namespace Brainbits\Sniffs\Exception;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use SlevomatCodingStandard\Helpers\NamespaceHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
-use SlevomatCodingStandard\Helpers\UseStatementHelper;
 
-use function defined;
 use function in_array;
+use function ltrim;
 use function sprintf;
+use function str_starts_with;
+use function strlen;
+use function strtolower;
 use function substr;
 
-use const T_NS_SEPARATOR;
-use const T_OPEN_TAG;
+use const T_NAME_FULLY_QUALIFIED;
+use const T_NAME_QUALIFIED;
+use const T_NAME_RELATIVE;
+use const T_NEW;
 use const T_STRING;
 use const T_THROW;
 
-// phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-// phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-
 /**
- * Global exception sniff
+ * Forbids throwing global SPL exceptions, they should be extended locally.
  */
 class GlobalExceptionSniff implements Sniff
 {
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ClassConstantTypeHint.MissingNativeTypeHint
-    public const CODE_GLOBAL_EXCEPTION = 'GlobalException';
+    public const string CODE_GLOBAL_EXCEPTION = 'GlobalException';
 
-    /** @return mixed[] */
+    private const array GLOBAL_EXCEPTIONS = [
+        'badfunctioncallexception',
+        'badmethodcallexception',
+        'domainexception',
+        'errorexception',
+        'exception',
+        'invalidargumentexception',
+        'lengthexception',
+        'logicexception',
+        'outofboundsexception',
+        'outofrangeexception',
+        'overflowexception',
+        'rangeexception',
+        'runtimeexception',
+        'underflowexception',
+        'unexpectedvalueexception',
+    ];
+
+    private const string RELATIVE_PREFIX = 'namespace\\';
+
+    /** @return list<int|string> */
     public function register(): array
     {
-        return [T_OPEN_TAG];
+        return [T_THROW];
     }
 
-    /** @param int $openTagPointer */
-    public function process(File $phpcsFile, $openTagPointer): void
+    public function process(File $phpcsFile, int $stackPtr): void
     {
-        $currentPointer = $openTagPointer;
-
-        $globalExceptions = [
-            'BadFunctionCallException',
-            'BadMethodCallException',
-            'DomainException',
-            'ErrorException',
-            'Exception',
-            'InvalidArgumentException',
-            'LengthException',
-            'LogicException',
-            'OutOfBoundsException',
-            'OutOfRangeException',
-            'OverflowException',
-            'RangeException',
-            'RuntimeException',
-            'UnderflowException',
-            'UnexpectedValueException',
-        ];
-
-        $useStatements = UseStatementHelper::getFileUseStatements($phpcsFile);
-
-        if (defined('T_NAME_FULLY_QUALIFIED')) {
-            // php 8.x
-            // phpcs:ignore SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFallbackGlobalName
-            $classTokens = [T_NAME_FULLY_QUALIFIED, T_NS_SEPARATOR, T_STRING];
-        } else {
-            $classTokens = [T_NS_SEPARATOR, T_STRING];
+        $newPointer = TokenHelper::findNextEffective($phpcsFile, $stackPtr + 1);
+        if ($newPointer === null || $phpcsFile->getTokens()[$newPointer]['code'] !== T_NEW) {
+            // e.g. `throw $exception;` or `throw $this->createException();`
+            return;
         }
 
-        do {
-            $currentPointer = TokenHelper::findNext($phpcsFile, T_THROW, $currentPointer + 1);
-            if (!$currentPointer) {
-                break;
-            }
+        $classPointer = TokenHelper::findNextEffective($phpcsFile, $newPointer + 1);
+        $nameTokens = [T_STRING, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED, T_NAME_RELATIVE];
+        if ($classPointer === null || !in_array($phpcsFile->getTokens()[$classPointer]['code'], $nameTokens, true)) {
+            // e.g. `throw new $class();` or `throw new class extends Foo {};`
+            return;
+        }
 
-            $classStartPointer = TokenHelper::findNext($phpcsFile, $classTokens, $currentPointer + 1);
-            if (!$classStartPointer) {
-                continue;
-            }
+        $className = $this->resolveClassName($phpcsFile, $classPointer);
+        if (!in_array(strtolower($className), self::GLOBAL_EXCEPTIONS, true)) {
+            return;
+        }
 
-            $classEndPointer = TokenHelper::findNextExcluding(
-                $phpcsFile,
-                $classTokens,
-                $classStartPointer + 1,
-            ) - 1;
-            if (!$classEndPointer) {
-                continue;
-            }
+        $phpcsFile->addError(
+            sprintf('Global exception "%s" used. It should be locally extended.', $className),
+            $classPointer,
+            self::CODE_GLOBAL_EXCEPTION,
+        );
+    }
 
-            $class = TokenHelper::getContent($phpcsFile, $classStartPointer, $classEndPointer);
+    /**
+     * Returns the fully qualified class name without leading backslash.
+     */
+    private function resolveClassName(File $phpcsFile, int $classPointer): string
+    {
+        $name = $phpcsFile->getTokens()[$classPointer]['content'];
 
-            if (substr($class, 0, 1) === '\\') {
-                // fully qualfied
-                $class = substr($class, 1);
-                if (in_array($class, $globalExceptions)) {
-                    $phpcsFile->addError(
-                        sprintf('Global exception "%s" used. It should be locally extended.', $class),
-                        $currentPointer,
-                        self::CODE_GLOBAL_EXCEPTION,
-                    );
-                }
-            } else {
-                // referenced
-                foreach ($useStatements as $useStatementX) {
-                    foreach ($useStatementX as $useStatement) {
-                        // phpcs:ignore
-                        if ($useStatement->getNameAsReferencedInFile() === $class || $useStatement->getFullyQualifiedTypeName() === $class) {
-                            if (in_array($useStatement->getFullyQualifiedTypeName(), $globalExceptions)) {
-                                $phpcsFile->addError(
-                                    sprintf('Global exception "%s" used. It should be locally extended.', $class),
-                                    $classStartPointer,
-                                    self::CODE_GLOBAL_EXCEPTION,
-                                );
-                            }
-                        }
-                    }
-                }
-            }
+        if (str_starts_with(strtolower($name), self::RELATIVE_PREFIX)) {
+            $namespace = NamespaceHelper::findCurrentNamespaceName($phpcsFile, $classPointer);
+            $name = substr($name, strlen(self::RELATIVE_PREFIX));
 
-            $currentPointer = $classEndPointer + 1;
-        } while ($currentPointer);
+            return $namespace === null ? $name : $namespace . '\\' . $name;
+        }
+
+        return ltrim(NamespaceHelper::resolveClassName($phpcsFile, $name, $classPointer), '\\');
     }
 }
