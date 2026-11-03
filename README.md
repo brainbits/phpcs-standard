@@ -11,7 +11,7 @@ Global
    ```
 3. Configure standard: 
    ```bash
-   {install-dir}/vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
+   {install-dir}/vendor/bin/phpcs --config-set default_standard Brainbits
    
    ```
 4. Execute:
@@ -28,7 +28,7 @@ In Project
    ```
 2. Configure standard:
    ```bash
-   vendor/bin/phpcs --config-set default_standard BrainbitsCodingStandard
+   vendor/bin/phpcs --config-set default_standard Brainbits
    ```
 3. Execute:
    ```bash
@@ -45,7 +45,7 @@ In Project with Ruleset Customization
 2. Create phpcs.xml (See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage)
    1. Include brainbits ruleset: 
       ```xml
-      <rule ref="BrainbitsCodingStandard" />
+      <rule ref="Brainbits" />
       ```
    2. Add default src-dir: 
       ```xml
@@ -56,11 +56,6 @@ In Project with Ruleset Customization
    ```bash
    vendor/bin/phpcs
    ```
-
-Docker
-------
-
-1. docker run -it --rm -v $PWD:/app brainbits/phpcs-standard {src-dir}
 
 Used Code Styles
 ================

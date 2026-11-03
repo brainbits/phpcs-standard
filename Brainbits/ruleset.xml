@@ -8,5 +8,5 @@
         <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
         <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed" />
     </rule>
-    <rul ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />
+    <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />
 </ruleset>

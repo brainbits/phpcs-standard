@@ -18,21 +18,14 @@
         }
     },
     "require": {
+        "php": "^8.4",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "doctrine/coding-standard": "^14.0",
         "slevomat/coding-standard": "^8.14",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.0.5"
-    },
-    "scripts": {
-        "tests": [
-            "vendor/bin/phpunit",
-            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=Brainbits `find tests/Brainbits/input/* | sort`; diff -u tests/Brainbits/expected_report.txt phpcs.log",
-            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandard `find tests/BrainbitsCodingStandard/input/* | sort`; diff -u tests/BrainbitsCodingStandard/expected_report.txt phpcs.log",
-            "vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=BrainbitsCodingStandardTest `find tests/BrainbitsCodingStandardTest/input/* | sort`; diff -u tests/BrainbitsCodingStandardTest/expected_report.txt phpcs.log"
-        ]
+        "phpunit/phpunit": "^13.4"
     },
     "config": {
         "allow-plugins": {

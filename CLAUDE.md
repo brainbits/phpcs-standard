@@ -8,9 +8,9 @@ Slevomat einbindet), schaltet einige Doctrine-Regeln ab und ergänzt einen eigen
 Installiert wird er über `dealerdirect/phpcodesniffer-composer-installer`, der das
 Verzeichnis `Brainbits/` als Standard registriert.
 
-- Abhängigkeiten: `squizlabs/php_codesniffer` ^4, `doctrine/coding-standard` ^14,
-  `slevomat/coding-standard` ^8.14, Dev: PHPUnit.
-- CI (`.github/workflows/build.yml`): PHP 8.3 und 8.4, jeweils mit `lowest`- und
+- PHP ^8.4. Abhängigkeiten: `squizlabs/php_codesniffer` ^4, `doctrine/coding-standard` ^14,
+  `slevomat/coding-standard` ^8.14, Dev: PHPUnit ^13.4.
+- CI (`.github/workflows/build.yml`): PHP 8.4 und 8.5, jeweils mit `lowest`- und
   `highest`-Abhängigkeiten.
 
 ## Aufbau
@@ -49,10 +49,6 @@ vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standar
 vendor/bin/phpcs
 ```
 
-`composer tests` ist **nicht** verwendbar: das Script verweist zusätzlich auf
-`tests/BrainbitsCodingStandard*`, die es nicht mehr gibt. Stattdessen die Befehle oben
-einzeln ausführen.
-
 ## Arbeitsweise
 
 - Regel ändern (ausschließen/hinzufügen): `Brainbits/ruleset.xml` anpassen, passende
@@ -72,13 +68,3 @@ einzeln ausführen.
 - Commits im Stil Conventional Commits (`fix:`, `fix(deps):`, `chore:`).
 - Branch für Entwicklung ist `main` (CI läuft auf Push nach `main` und auf PRs). Ältere
   Versionszweige: `1.0`, `2.0`, `3.0`; `master` ist veraltet.
-
-## Bekannte Baustellen
-
-- `Brainbits/ruleset.xml`: `<rul ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />`
-  ist ein Tippfehler (`rul` statt `rule`) — die Regel wird dadurch stillschweigend nicht
-  angewendet.
-- `README.md` nennt den Standard `BrainbitsCodingStandard`; korrekt ist `Brainbits`. Der dort
-  beschriebene Docker-Weg hat im Repo kein Dockerfile.
-- `phpunit.xml.dist` verweist noch auf das Schema von PHPUnit 10.1.
-- `CHANGELOG.md` endet bei 1.0.3 und wird nicht mehr gepflegt.
