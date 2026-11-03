@@ -42,11 +42,11 @@ jobs:
 
       - name: "Install lowest dependencies"
         if: ${{ matrix.dependencies == 'lowest' }}
-        run: "composer update --prefer-lowest --prefer-dist --no-interaction --no-progress --no-suggest"
+        run: "composer update --prefer-lowest --prefer-dist --no-interaction --no-progress"
 
       - name: "Install highest dependencies"
         if: ${{ matrix.dependencies == 'highest' }}
-        run: "composer update --prefer-dist --no-interaction --no-progress --no-suggest"
+        run: "composer update --prefer-dist --no-interaction --no-progress"
 
       - name: "Tests"
         run: "vendor/bin/phpunit"
@@ -54,3 +54,7 @@ jobs:
       - name: "Test Brainbits"
         if: ${{ matrix.dependencies == 'highest' }}
         run: "(vendor/bin/phpcs --basepath=. --report=summary --report-file=phpcs.log --standard=Brainbits `find tests/Brainbits/input/* | sort`) || true; diff -u tests/Brainbits/expected_report.txt phpcs.log"
+
+      - name: "Coding Standard"
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: "vendor/bin/phpcs"

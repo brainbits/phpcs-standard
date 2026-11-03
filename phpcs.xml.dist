@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
-<ruleset name="controlling">
+<ruleset name="brainbits-phpcs-standard">
     <description>The brainbits coding standard.</description>
 
 	<file>Brainbits</file>
+	<file>tests</file>
+
+	<exclude-pattern>tests/*/input/*</exclude-pattern>
+	<exclude-pattern>tests/*/fixture/*</exclude-pattern>
 
 	<arg name="basepath" value="."/>
 	<arg name="extensions" value="php"/>
