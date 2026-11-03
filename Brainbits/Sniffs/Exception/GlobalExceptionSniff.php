@@ -6,6 +6,7 @@ namespace Brainbits\Sniffs\Exception;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Util\Tokens;
 use SlevomatCodingStandard\Helpers\TokenHelper;
 
 use function explode;
@@ -23,8 +24,6 @@ use function strtolower;
 use function substr;
 use function trim;
 
-use const T_COMMENT;
-use const T_DOC_COMMENT;
 use const T_NAME_FULLY_QUALIFIED;
 use const T_NAME_QUALIFIED;
 use const T_NAME_RELATIVE;
@@ -233,7 +232,7 @@ class GlobalExceptionSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $statement = '';
         for ($pointer = $startPointer; $pointer <= $endPointer; $pointer++) {
-            if (in_array($tokens[$pointer]['code'], [T_COMMENT, T_DOC_COMMENT], true)) {
+            if (isset(Tokens::COMMENT_TOKENS[$tokens[$pointer]['code']])) {
                 continue;
             }
 

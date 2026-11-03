@@ -113,8 +113,8 @@ final class GlobalExceptionSniffTest extends TestCase
         $report = self::checkFile(__DIR__ . '/fixture/GroupUse.php');
 
         self::assertSame(2, $report->getErrorCount());
-        self::assertSniffError($report, 12, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
-        self::assertSniffError($report, 13, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'DomainException');
+        self::assertSniffError($report, 17, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'LogicException');
+        self::assertSniffError($report, 18, GlobalExceptionSniff::CODE_GLOBAL_EXCEPTION, 'DomainException');
     }
 
     public function testThrowExpressions(): void
