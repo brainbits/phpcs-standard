@@ -21,13 +21,15 @@ Verzeichnis `Brainbits/` als Standard registriert.
 - `Brainbits/Sniffs/` — eigene Sniffs, Namespace `Brainbits\Sniffs\` (PSR-4). Sniffs in
   diesem Verzeichnis werden von PHPCS automatisch Teil des Standards, sie müssen nicht im
   Ruleset referenziert werden.
-  - `Exception/GlobalExceptionSniff.php` — meldet `throw new` mit globalen SPL-Exceptions
-    (`\RuntimeException`, `\InvalidArgumentException`, …). Der Klassenname wird über
-    Namespace und `use`-Statements aufgelöst (voll qualifiziert, importiert, Alias,
-    unqualifiziert im globalen Namespace, `namespace\…`), Vergleich case-insensitive.
-    `throw $e` u. ä. wird ignoriert. Vollständiger Fehlercode:
-    `Brainbits.Exception.GlobalException.GlobalException`. Nutzt Slevomat-Helper
-    (`TokenHelper`, `NamespaceHelper`).
+  - `Exception/GlobalExceptionSniff.php` — meldet `throw new` mit eingebauten globalen
+    Exceptions (`\Exception`, `\ErrorException` und die SPL-Exceptions wie
+    `\RuntimeException`). Der Klassenname wird selbst aufgelöst, pro Namespace-Block (auch
+    mehrere Namespaces pro Datei, `namespace { }`), über `use`-Statements inkl. Alias und
+    Gruppen-Use (`use function`/`use const` zählen nicht), `namespace\…`; Vergleich
+    case-insensitive. Klammern nach `throw` werden übersprungen. Nicht erkannt (bewusst):
+    `throw $e`, `throw new $class`, anonyme Klassen, `throw X::create()`. Fehler sitzt auf
+    dem `throw`-Token. Vollständiger Fehlercode:
+    `Brainbits.Exception.GlobalException.GlobalException`.
 - `tests/Brainbits/Sniffs/` — PHPUnit-Tests der Sniffs. Sie erben von
   `SlevomatCodingStandard\Sniffs\TestCase`; die Sniff-Klasse wird aus dem Testklassennamen
   abgeleitet (`FooSniffTest` → `FooSniff`), Fixtures liegen in `fixture/`.
@@ -72,4 +74,6 @@ vendor/bin/phpcs
   die niedrigste Version die Tests bricht.
 - Commits im Stil Conventional Commits (`fix:`, `fix(deps):`, `chore:`).
 - Branch für Entwicklung ist `main` (CI läuft auf Push nach `main` und auf PRs). Ältere
-  Versionszweige: `1.0`, `2.0`, `3.0`; `master` ist veraltet.
+  Versionszweige: `1.0`, `3.0`. `main` ist geschützt: nur per PR, alle CI-Jobs
+  `Tests (…)` sind Pflicht-Checks. Ändert sich die PHP-Matrix, müssen die Pflicht-Checks in
+  der Branch-Protection angepasst werden.

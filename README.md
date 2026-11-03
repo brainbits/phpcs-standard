@@ -19,9 +19,10 @@ Disabled rules:
 
 Additional rules:
 
-- `Brainbits.Exception.GlobalException` – forbids throwing global SPL exceptions
-  (`\Exception`, `\RuntimeException`, `\InvalidArgumentException`, …).
-  Extend them in your own namespace instead:
+- `Brainbits.Exception.GlobalException` – forbids `throw new` with PHP's built-in global
+  exceptions (`\Exception`, `\ErrorException` and the SPL exceptions like `\RuntimeException`,
+  `\InvalidArgumentException`, …). Only direct `throw new …` statements are checked.
+  Extend the exceptions in your own namespace instead:
 
   ```php
   // error
