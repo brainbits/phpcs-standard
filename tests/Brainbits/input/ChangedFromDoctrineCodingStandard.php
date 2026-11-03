@@ -9,17 +9,32 @@ class ChangedFromDoctrineCodingStandard
     /**
      * Generic.Formatting.MultipleStatementAlignment.NotSame
      */
-    public static FOO = 1;
-    public static SOME_CONSTANT = 1;
-    public static AND_ANOTHER = 1;
+    public function alignment(): int
+    {
+        $foo = 1;
+        $someVariable = 2;
+        $andAnother = 3;
+
+        return $foo + $someVariable + $andAnother;
+    }
 
     /**
      * Generic.Formatting.SpaceAfterNot.Incorrect
      */
-    public function test(): void
+    public function spaceAfterNot(bool $flag): bool
     {
-        if (!true) {
-            return;
-        }
+        return !$flag;
+    }
+
+    /**
+     * Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed
+     *
+     * @return list<string>
+     */
+    public function multiLineArrayWithSingleItem(): array
+    {
+        return [
+            'a',
+        ];
     }
 }
