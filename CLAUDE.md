@@ -72,8 +72,21 @@ vendor/bin/phpcs
   nach einem Upgrade immer beide Testarten laufen lassen. CI testet auch `--prefer-lowest`,
   Versionsconstraints also nicht höher setzen als nötig, aber auch nicht so niedrig, dass
   die niedrigste Version die Tests bricht.
-- Commits im Stil Conventional Commits (`fix:`, `fix(deps):`, `chore:`).
+- Commits im Stil Conventional Commits (`fix:`, `fix(deps):`, `chore:`). Sie bestimmen die
+  Version (siehe Releases), der Commit-Typ ist also eine Release-Entscheidung.
 - Branch für Entwicklung ist `main` (CI läuft auf Push nach `main` und auf PRs). Ältere
   Versionszweige: `1.0`, `3.0`. `main` ist geschützt: nur per PR, alle CI-Jobs
   `Tests (…)` sind Pflicht-Checks. Ändert sich die PHP-Matrix, müssen die Pflicht-Checks in
   der Branch-Protection angepasst werden.
+
+## Releases
+
+Releases macht semantic-release (`.releaserc`, `.github/workflows/release.yaml`), keine
+Tags von Hand setzen. Nach jedem erfolgreichen Build eines Pushes auf `main` erzeugt es aus
+den Commits seit dem letzten Tag Tag und GitHub-Release (Tag-Format ohne `v`, z. B.
+`8.0.2`); Packagist übernimmt den Tag per Webhook.
+
+- `fix:` → Patch, `feat:` → Minor, `BREAKING CHANGE:` im Commit-Footer (oder `feat!:`) → Major.
+- `chore:`, `ci:`, `docs:`, `test:` lösen allein kein Release aus.
+- Neue oder strengere Regeln können bei Nutzern Builds brechen: bewusst entscheiden, ob
+  das ein `BREAKING CHANGE` ist.
